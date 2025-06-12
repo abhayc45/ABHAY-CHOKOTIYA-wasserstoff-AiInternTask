@@ -11,25 +11,19 @@ Install the required Python packages using pip:
 ```bash
 pip install -r requirements.txt
 ```
-hello abhay f
-### 2. Install Tesseract OCR
 
-This project uses Tesseract OCR to extract text from images. You need to install it on your system.
+### 2. Install PaddleOCR
 
-*   **Windows (Detailed Steps):**
-    1.  **Download the Installer:** Go to the [Tesseract at UB Mannheim](https://github.com/UB-Mannheim/tesseract/wiki) page, which is the official source for Windows installers. Download the `tesseract-ocr-w64-setup-v5.x.x.exe` file.
-    2.  **Run the Installer:** Run the downloaded installer. **During installation, it is highly recommended to check the box for "Add Tesseract to system PATH"**. This will automate the most difficult step.
-    3.  **If You Missed the PATH Step:** If you did not check the box during installation, you must add it manually:
-        *   Find the Tesseract installation folder. By default, it is `C:\Program Files\Tesseract-OCR`.
-        *   Search for "Edit the system environment variables" in the Windows Start Menu and open it.
-        *   Click the "Environment Variables..." button.
-        *   In the "System variables" section, find the `Path` variable, select it, and click "Edit...".
-        *   Click "New" and paste in the path to your Tesseract installation folder (e.g., `C:\Program Files\Tesseract-OCR`).
-        *   Click OK on all windows to save the changes.
-    4.  **Restart VS Code and Terminals:** After installing and setting the PATH, you **must** completely close and reopen VS Code and your terminals for the changes to take effect.
+This project uses PaddleOCR to extract text from images. You need to install it on your system.
 
-*   **macOS (Homebrew):** `brew install tesseract`
-*   **Linux (apt):** `sudo apt-get install tesseract-ocr`
+*   **Windows:**
+    *   Follow the official [PaddleOCR installation guide for Windows](https://github.com/PaddlePaddle/PaddleOCR/blob/main/doc/doc_en/installation_en.md).
+
+*   **macOS:**
+    *   Follow the official [PaddleOCR installation guide for macOS](https://github.com/PaddlePaddle/PaddleOCR/blob/main/doc/doc_en/installation_en.md).
+
+*   **Linux:**
+    *   Follow the official [PaddleOCR installation guide for Linux](https://github.com/PaddlePaddle/PaddleOCR/blob/main/doc/doc_en/installation_en.md).
 
 ### 3. Set up Google API Key
 
