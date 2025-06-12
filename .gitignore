@@ -1,0 +1,10 @@
+# Environments
+.env
+.env.example
+
+# Uploads
+uploads/
+
+# Python
+__pycache__/
+*.pyc

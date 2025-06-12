@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+python-multipart
+qdrant-client
+pypdf
+pytesseract
+pillow
+pdf2image
+google-generativeai
+streamlit
+requests
+python-dotenv
