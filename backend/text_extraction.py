@@ -1,26 +1,14 @@
 import os
 from PIL import Image
-import pytesseract
+from paddleocr import PaddleOCR
 from pypdf import PdfReader
 from pdf2image import convert_from_path
 from typing import List, Dict, Any
 
 # --- Configuration ---
-# You might need to install Tesseract OCR on your system
-# and Poppler for pdf2image to work.
-#
-# For Windows:
-# 1. Install Tesseract: https://github.com/tesseract-ocr/tesseract
-# 2. Install Poppler: https://github.com/oschwartz10612/poppler-windows/releases/
-#    - Add the 'bin' folder from the Poppler installation to your system's PATH.
-#
-# For macOS (using Homebrew):
-# brew install tesseract
-# brew install poppler
-#
-# For Linux (using apt):
-# sudo apt-get install tesseract-ocr
-# sudo apt-get install poppler-utils
+# Initialize PaddleOCR
+# This will download the models for the first time if not already cached
+ocr = PaddleOCR(use_angle_cls=True, lang='en')
 
 def chunk_text(text: str, chunk_size: int = 800, chunk_overlap: int = 100) -> List[str]:
     """Splits text into smaller chunks."""
@@ -55,7 +43,10 @@ def extract_text_from_pdf(file_path: str) -> List[Dict[str, Any]]:
                 images = convert_from_path(file_path, first_page=page_num + 1, last_page=page_num + 1)
                 if images:
                     # Perform OCR on the image
-                    page_content = pytesseract.image_to_string(images[0])
+                    result = ocr.ocr(images[0], cls=True)
+                    if result:
+                        # Extract text from the result
+                        page_content = "\n".join([line[1][0] for line in result[0]])
             except Exception as e:
                 print(f"OCR failed on page {page_num + 1} of {os.path.basename(file_path)}: {e}")
                 page_content = "" # Continue if OCR fails on one page
@@ -79,7 +70,11 @@ def extract_text_from_pdf(file_path: str) -> List[Dict[str, Any]]:
 
 def extract_text_from_image(file_path: str) -> List[Dict[str, Any]]:
     """Extracts text from an image and returns it in chunks."""
-    text = pytesseract.image_to_string(Image.open(file_path))
+    result = ocr.ocr(file_path, cls=True)
+    if result:
+        text = "\n".join([line[1][0] for line in result[0]])
+    else:
+        text = ""
     text_chunks = chunk_text(text)
     
     return [{
