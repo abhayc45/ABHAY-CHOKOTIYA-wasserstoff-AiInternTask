@@ -11,7 +11,7 @@ Install the required Python packages using pip:
 ```bash
 pip install -r requirements.txt
 ```
-
+hello abhay f
 ### 2. Install Tesseract OCR
 
 This project uses Tesseract OCR to extract text from images. You need to install it on your system.
