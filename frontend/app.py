@@ -4,7 +4,11 @@ import pandas as pd
 import time
 
 # --- Configuration ---
-BACKEND_URL = "http://localhost:8000"
+import os
+
+# --- Configuration ---
+# Use the Replit environment variable for the backend URL if it exists
+BACKEND_URL = os.environ.get("REPLIT_BACKEND_URL", "http://localhost:8000")
 
 # --- Helper Functions ---
 def get_document_list():
